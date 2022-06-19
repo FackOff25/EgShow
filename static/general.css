@@ -1,0 +1,24 @@
+#image_loader{
+	align-self: center;
+	padding: 10px;
+	border: 2px dashed green;
+    vertical-align: middle;
+	margin:auto
+}
+#loader_box{
+	height: 100%;
+    width: 100%;
+    display: table;
+}
+.wrapper{
+	display: table-cell;
+    height: 100%;
+    vertical-align: middle;
+	text-align: center;
+}
+#openseadragon1{
+	width: 100%;
+	height: 100%;
+	align-self: center;
+	display: none;
+}
