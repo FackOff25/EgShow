@@ -1,0 +1,23 @@
+{% load static %}
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="{% url "Main" %}">EgShow</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url "Alphabet images" %}">Tiled images</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url "Build new pyramid" %}">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Upload</button>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>

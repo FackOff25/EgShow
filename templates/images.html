@@ -1,0 +1,12 @@
+{% extends "include/base.html" %}
+{% load static %}
+
+{% block title %}Main{% endblock %}
+{% block container %}
+    <h1 class="mt-5">Available images</h1>
+    <div class="col">
+        <div class="row">
+            {% include "include/image-card.html" %}
+        </div>
+    </div>
+{% endblock %}

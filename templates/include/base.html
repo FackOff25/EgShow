@@ -1,0 +1,30 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>{% block title %}EgShow{% endblock %}</title>
+
+    <link href="{% get_static_prefix %}css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% get_static_prefix %}css/main.css" rel="stylesheet">
+</head>
+
+<body>
+
+{% include "include/navbar.html" %}
+
+<!-- Begin page content -->
+<main role="main" class="container">
+    {% block container %}
+    {% endblock %}
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <span class="text-muted">©Vladimir Kozlov 2022</span>
+    </div>
+</footer>
+{% block scripts %}
+{% endblock %}
+</body>
+</html>
