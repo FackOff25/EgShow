@@ -15,4 +15,3 @@ def build_new(request):
 
 def image(request):
     return render(request, "image.html")
-
