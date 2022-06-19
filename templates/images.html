@@ -6,7 +6,9 @@
     <h1 class="mt-5">Available images</h1>
     <div class="col">
         <div class="row">
+            {% for i in images %}
             {% include "include/image-card.html" %}
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

@@ -2,9 +2,11 @@ from django.shortcuts import render
 
 # Create your views here.
 
+IMAGES = range(12)
+
 
 def loaded_images(request):
-    return render(request, "images.html")
+    return render(request, "images.html", {'images': IMAGES})
 
 
 def build_new(request):

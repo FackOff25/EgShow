@@ -1,5 +1,6 @@
 .image-card {
-    width: 18rem;
+    margin: 5px;
+    width: 200px;
     padding: 10px;
     height: fit-content;
     border: 1px solid;
@@ -9,8 +10,8 @@
 .image-card-image {
     border: 1px solid lightgray;
     border-radius: 10px;
-    width: 16rem;
-    height: 16rem;
+    width: 180px;
+    height: 180px;
     margin: 0 auto auto auto;
 }
 
@@ -39,6 +40,8 @@
 	align-self: center;
 	display: none;
 }
+
+.mainArea { margin: 20px 0 20px 0; }
 
 /*bootstrap example section*/
 body > .container {
