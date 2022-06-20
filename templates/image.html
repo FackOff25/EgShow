@@ -5,16 +5,10 @@
 
 {% block container %}
     <div>
-        <div id="loader_box">
-            <div class="wrapper">
-                <input type="file" id="image_loader" accept="image/*"
-                       onchange="openOpenSeaDragon(this); this.value = ''">
-            </div>
-        </div>
         <div id="openSeaDragon-window"></div>
     </div>
 {% endblock %}
 {% block scripts %}
-    <script src="../static/openseadragon/openseadragon.min.js"></script>
-    <script src="../static/js/image-show.js"></script>
+    <script src="{% get_static_prefix %}openseadragon/openseadragon.min.js"></script>
+    <script src="{% get_static_prefix %}js/image-show.js"></script>
 {% endblock %}
