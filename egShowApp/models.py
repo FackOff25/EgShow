@@ -10,6 +10,9 @@ class TiledImageManager(models.Manager):
     def get_last(self):
         return self.all().order_by('date')
 
+    def get_in_alph(self):
+        return self.all().order_by('name')
+
 
 class TiledImage(models.Model):
     name = models.CharField(max_length=255, null=False)

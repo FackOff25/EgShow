@@ -20,10 +20,11 @@ from egShow import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.loaded_images, name="Main"),
-    path('alph/', views.loaded_images, name="Alphabet images"),
-    path('upload/', views.build_new, name="Build new pyramid"),
-    path('image/<int:iid>/', views.image, name="Show image"),
-] + static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0]) \
+                  path('admin/', admin.site.urls),
+                  path('', views.new_images, name="Main"),
+                  path('new/', views.new_images, name="New images"),
+                  path('alph/', views.alph_images, name="Alphabet images"),
+                  path('upload/', views.build_new, name="Build new pyramid"),
+                  path('image/<int:iid>/', views.image, name="Show image"),
+              ] + static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0]) \
               + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
