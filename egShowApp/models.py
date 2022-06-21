@@ -8,17 +8,16 @@ from django.contrib.auth.models import User
 
 class TiledImageManager(models.Manager):
     def get_last(self):
-        return self.all().order_by('date')
+        return self.exclude(directory__isnull=True).all().order_by('date')
 
     def get_in_alph(self):
-        return self.all().order_by('name')
+        return self.exclude(directory__isnull=True).all().order_by('name')
 
 
 class TiledImage(models.Model):
     name = models.CharField(max_length=255, null=False)
     date = models.DateTimeField(auto_now_add=True)
-    # dzi file path
-    directory = models.FilePathField(max_length=255, path="media/tiled/", null=False, default=None, allow_files=False,
+    directory = models.FilePathField(max_length=255, path="media/tiled/", null=True, default=None, allow_files=False,
                                      allow_folders=True)
     objects = TiledImageManager()
 
@@ -31,10 +30,10 @@ class TiledImage(models.Model):
 
     @property
     def thumbnail(self):
-        thumbnail = "/" + self.directory + "/" + self.name + '.jpg'
+        thumbnail = self.directory + "/" + self.name + '.jpg'
         return thumbnail
 
     @property
     def image(self):
-        image = "/" + self.directory + "/" + self.name + '.dzi'
+        image = self.directory + "/" + self.name + '.dzi'
         return image

@@ -1,8 +1,12 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator
 from django.http import HttpResponseNotFound
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
+
 from egShowApp.models import TiledImage
+from django.views.decorators.http import require_http_methods
+from egShowApp.forms import TiledImageForm
 
 # Create your views here.
 
@@ -26,11 +30,20 @@ def alph_images(request):
     return render(request, "images.html", {'iterators': iterators})
 
 
+@require_http_methods(['POST', 'GET'])
 def build_new(request):
-    return render(request, "upload.html")
+    if request.method == 'POST':
+        form = TiledImageForm(data=request.POST, files=request.FILES)
+        if form.is_valid():
+            form.save()
+        return redirect(reverse('New images'))
+
+    form = TiledImageForm()
+    return render(request, "upload.html", {'form': form})
 
 
 def image(request, iid: int):
+
     try:
         the_image = TiledImage.objects.get(pk=iid)
     except ObjectDoesNotExist:
