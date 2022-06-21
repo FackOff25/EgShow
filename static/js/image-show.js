@@ -5,7 +5,7 @@ function onLoad() {
 
     /*let viewer = */OpenSeadragon({
         id: "openSeaDragon-window",
-        prefixUrl: "../static/openseadragon/images/",
+        prefixUrl: "/static/openseadragon/images/",
         tileSources: image
     });
 }

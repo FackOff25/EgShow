@@ -166,8 +166,8 @@
   *     TODO: provide an in-screen panel providing event detail feedback.
   *
   * @property {String} [debugGridColor=['#437AB2', '#1B9E77', '#D95F02', '#7570B3', '#E7298A', '#66A61E', '#E6AB02', '#A6761D', '#666666']]
-  *     The colors of grids in debug mode. Each tiled image's grid uses a consecutive color.
-  *     If there are more tiled images than provided colors, the color vector is recycled.
+  *     The colors of grids in debug mode. Each media image's grid uses a consecutive color.
+  *     If there are more media images than provided colors, the color vector is recycled.
   *
   * @property {Boolean} [silenceMultiImageWarnings=false]
   *     Silences warnings when calling viewport coordinate functions with multi-image.
@@ -197,7 +197,7 @@
   *     If 0, adjusts to fit viewer.
   *
   * @property {Number} [opacity=1]
-  *     Default proportional opacity of the tiled images (1=opaque, 0=hidden)
+  *     Default proportional opacity of the media images (1=opaque, 0=hidden)
   *     Hidden images do not draw and only load when preloading is allowed.
   *
   * @property {Boolean} [preload=false]
@@ -7719,7 +7719,7 @@ $.Viewer = function( options ) {
          */
         drawer:             null,
         /**
-         * Keeps track of all of the tiled images in the scene.
+         * Keeps track of all of the media images in the scene.
          * @member {OpenSeadragon.World} world
          * @memberof OpenSeadragon.Viewer#
          */
@@ -8078,7 +8078,7 @@ $.extend( $.Viewer.prototype, $.EventSource.prototype, $.ControlDock.prototype, 
     },
 
     /**
-     * Open tiled images into the viewer, closing any others.
+     * Open media images into the viewer, closing any others.
      * To get the TiledImage instance created by open, add an event listener for
      * {@link OpenSeadragon.Viewer.html#.event:open}, which when fired can be used to get access
      * to the instance, i.e., viewer.world.getItemAt(0).
@@ -8856,7 +8856,7 @@ $.extend( $.Viewer.prototype, $.EventSource.prototype, $.ControlDock.prototype, 
     },
 
     /**
-     * Add a tiled image to the viewer.
+     * Add a media image to the viewer.
      * options.tileSource can be anything that {@link OpenSeadragon.Viewer#open}
      *  supports except arrays of images.
      * Note that you can specify options.width or options.height, but not both.
@@ -8891,9 +8891,9 @@ $.extend( $.Viewer.prototype, $.EventSource.prototype, $.ControlDock.prototype, 
      * @param {OpenSeadragon.Rect} [options.clip] - An area, in image pixels, to clip to
      * (portions of the image outside of this area will not be visible). Only works on
      * browsers that support the HTML5 canvas.
-     * @param {Number} [options.opacity=1] Proportional opacity of the tiled images (1=opaque, 0=hidden)
+     * @param {Number} [options.opacity=1] Proportional opacity of the media images (1=opaque, 0=hidden)
      * @param {Boolean} [options.preload=false]  Default switch for loading hidden images (true loads, false blocks)
-     * @param {Number} [options.degrees=0] Initial rotation of the tiled image around
+     * @param {Number} [options.degrees=0] Initial rotation of the media image around
      * its top left corner in degrees.
      * @param {Boolean} [options.flipped=false] Whether to horizontally flip the image.
      * @param {String} [options.compositeOperation] How the image is composited onto other images.
@@ -13605,7 +13605,7 @@ $.IIIFTileSource = function( options ){
             options.tileSize = shortDim;
         }
     } else if (this.sizes && this.sizes.length > 0) {
-        // This info.json can't be tiled, but we can still construct a legacy pyramid from the sizes array.
+        // This info.json can't be media, but we can still construct a legacy pyramid from the sizes array.
         // In this mode, IIIFTileSource will call functions from the abstract baseTileSource or the
         // LegacyTileSource instead of performing IIIF tiling.
         this.emulateLegacyImagePyramid = true;
@@ -21275,7 +21275,7 @@ $.extend($.TiledImage.prototype, $.EventSource.prototype, /** @lends OpenSeadrag
     },
 
     /**
-     * Get the bounds of the displayed part of the tiled image.
+     * Get the bounds of the displayed part of the media image.
      * @param {Boolean} [current=false] Pass true for the current location,
      * false for the target location.
      * @returns {$.Rect} The clipped bounds in viewport coordinates.
@@ -21511,7 +21511,7 @@ $.extend($.TiledImage.prototype, $.EventSource.prototype, /** @lends OpenSeadrag
     },
 
     // private
-    // Convert rectangle in viewport coordinates to this tiled image point
+    // Convert rectangle in viewport coordinates to this media image point
     // coordinates (x in [0, 1] and y in [0, aspectRatio])
     _viewportToTiledImageRectangle: function(rect) {
         var scale = this._scaleSpring.current.value;
@@ -21790,7 +21790,7 @@ $.extend($.TiledImage.prototype, $.EventSource.prototype, /** @lends OpenSeadrag
     },
 
     /**
-     * @param {Number} opacity Opacity the tiled image should be drawn at.
+     * @param {Number} opacity Opacity the media image should be drawn at.
      * @fires OpenSeadragon.TiledImage.event:opacity-change
      */
     setOpacity: function(opacity) {
@@ -21831,9 +21831,9 @@ $.extend($.TiledImage.prototype, $.EventSource.prototype, /** @lends OpenSeadrag
     },
 
     /**
-     * Get the rotation of this tiled image in degrees.
+     * Get the rotation of this media image in degrees.
      * @param {Boolean} [current=false] True for current rotation, false for target.
-     * @returns {Number} the rotation of this tiled image in degrees.
+     * @returns {Number} the rotation of this media image in degrees.
      */
     getRotation: function(current) {
         return current ?
@@ -21842,7 +21842,7 @@ $.extend($.TiledImage.prototype, $.EventSource.prototype, /** @lends OpenSeadrag
     },
 
     /**
-     * Set the current rotation of this tiled image in degrees.
+     * Set the current rotation of this media image in degrees.
      * @param {Number} degrees the rotation in degrees.
      * @param {Boolean} [immediately=false] Whether to animate to the new angle
      * or rotate immediately.
@@ -21863,7 +21863,7 @@ $.extend($.TiledImage.prototype, $.EventSource.prototype, /** @lends OpenSeadrag
     },
 
     /**
-     * Get the point around which this tiled image is rotated
+     * Get the point around which this media image is rotated
      * @private
      * @param {Boolean} current True for current rotation point, false for target.
      * @returns {OpenSeadragon.Point}
@@ -21880,7 +21880,7 @@ $.extend($.TiledImage.prototype, $.EventSource.prototype, /** @lends OpenSeadrag
     },
 
     /**
-     * @param {String} compositeOperation the tiled image should be drawn with this globalCompositeOperation.
+     * @param {String} compositeOperation the media image should be drawn with this globalCompositeOperation.
      * @fires OpenSeadragon.TiledImage.event:composite-operation-change
      */
     setCompositeOperation: function(compositeOperation) {
@@ -22410,7 +22410,7 @@ $.extend($.TiledImage.prototype, $.EventSource.prototype, /** @lends OpenSeadrag
             // Headers are only applicable if loadTilesWithAjax is set
             if (this.loadTilesWithAjax) {
                 ajaxHeaders = tileSource.getTileAjaxHeaders( level, xMod, yMod );
-                // Combine tile AJAX headers with tiled image AJAX headers (if applicable)
+                // Combine tile AJAX headers with media image AJAX headers (if applicable)
                 if ($.isPlainObject(this.ajaxHeaders)) {
                     ajaxHeaders = $.extend({}, this.ajaxHeaders, ajaxHeaders);
                 }
@@ -22507,7 +22507,7 @@ $.extend($.TiledImage.prototype, $.EventSource.prototype, /** @lends OpenSeadrag
              * @memberof OpenSeadragon.Viewer
              * @type {object}
              * @property {OpenSeadragon.Tile} tile - The tile that failed to load.
-             * @property {OpenSeadragon.TiledImage} tiledImage - The tiled image the tile belongs to.
+             * @property {OpenSeadragon.TiledImage} tiledImage - The media image the tile belongs to.
              * @property {number} time - The time in milliseconds when the tile load began.
              * @property {string} message - The error message.
              * @property {XMLHttpRequest} tileRequest - The XMLHttpRequest used to load the tile if available.
@@ -22589,7 +22589,7 @@ $.extend($.TiledImage.prototype, $.EventSource.prototype, /** @lends OpenSeadrag
          * @memberof OpenSeadragon.Viewer
          * @type {object}
          * @property {Image} image - The image of the tile.
-         * @property {OpenSeadragon.TiledImage} tiledImage - The tiled image of the loaded tile.
+         * @property {OpenSeadragon.TiledImage} tiledImage - The media image of the loaded tile.
          * @property {OpenSeadragon.Tile} tile - The tile which has been loaded.
          * @property {XMLHttpRequest} tileRequest - The AJAX request that loaded this tile (if applicable).
          * @property {function} getCompletionCallback - A function giving a callback to call
@@ -22756,7 +22756,7 @@ $.extend($.TiledImage.prototype, $.EventSource.prototype, /** @lends OpenSeadrag
         if (lastDrawn.length > 1 &&
             imageZoom > this.smoothTileEdgesMinZoom &&
             !this.iOSDevice &&
-            this.getRotation(true) % 360 === 0 && // TODO: support tile edge smoothing with tiled image rotation.
+            this.getRotation(true) % 360 === 0 && // TODO: support tile edge smoothing with media image rotation.
             $.supportsCanvas && this.viewer.useCanvas) {
             // When zoomed in a lot (>100%) the tile edges are visible.
             // So we have to composite them at ~100% and scale them up together.
@@ -23435,7 +23435,7 @@ $.TileCache.prototype = {
          * @event tile-unloaded
          * @memberof OpenSeadragon.Viewer
          * @type {object}
-         * @property {OpenSeadragon.TiledImage} tiledImage - The tiled image of the unloaded tile.
+         * @property {OpenSeadragon.TiledImage} tiledImage - The media image of the unloaded tile.
          * @property {OpenSeadragon.Tile} tile - The tile which has been unloaded.
          */
         tiledImage.viewer.raiseEvent("tile-unloaded", {
@@ -23487,7 +23487,7 @@ $.TileCache.prototype = {
  * @class World
  * @memberof OpenSeadragon
  * @extends OpenSeadragon.EventSource
- * @classdesc Keeps track of all of the tiled images in the scene.
+ * @classdesc Keeps track of all of the media images in the scene.
  * @param {Object} options - World options.
  * @param {OpenSeadragon.Viewer} options.viewer - The Viewer that owns this World.
  **/
