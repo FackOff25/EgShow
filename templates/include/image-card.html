@@ -1,7 +1,7 @@
 {% load static %}
 <div class="card image-card">
     <img class="card-img-top image-card-image" src="{{ image.thumbnail }}" alt="Card image cap">
-    <div class="card-body">
+    <div class="image-card-body">
         <h5 class="card-title">{{ image.name }}</h5>
         <a href="{% url "Show image" image.pk %}" class="btn btn-outline-success my-2 my-sm-0">Look closer</a>
     </div>

@@ -1,3 +1,6 @@
+import sys
+from threading import Thread
+
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator
 from django.http import HttpResponseNotFound
@@ -7,10 +10,6 @@ from django.urls import reverse
 from egShowApp.models import TiledImage
 from django.views.decorators.http import require_http_methods
 from egShowApp.forms import TiledImageForm
-
-# Create your views here.
-
-IMAGES = range(12)
 
 
 def paginate(objects_list, request, per_page=5):
@@ -33,9 +32,18 @@ def alph_images(request):
 @require_http_methods(['POST', 'GET'])
 def build_new(request):
     if request.method == 'POST':
+
+        def save_form(form_to_save):
+            if form_to_save.is_valid():
+                form_to_save.save()
+            else:
+                print("Form invalid", file=sys.stderr)
+
         form = TiledImageForm(data=request.POST, files=request.FILES)
-        if form.is_valid():
-            form.save()
+        pr = Thread(target=save_form, args=(form, ))
+        pr.start()
+        # second of wait to check form validation and avoid sharing memory
+        pr.join(0.5)
         return redirect(reverse('New images'))
 
     form = TiledImageForm()

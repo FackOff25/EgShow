@@ -25,7 +25,7 @@ class TiledImageForm(forms.ModelForm):
         os.makedirs(directory, 0o777)
         os.umask(original_umask)
         path = default_storage.save('tmp/temp.jpg', ContentFile(self.cleaned_data['image'].read()))
-        exit_code = subprocess.check_call(['back/tiler/tile.sh', str(self.instance.pk),
+        exit_code = subprocess.check_call(['back/tiler/tiler.o', str(self.instance.pk),
                                            self.instance.name, "media/" + path, 'media/tiled/'])
         os.remove(str(MEDIA_ROOT) + "/" + path)
         self.instance.directory = MEDIA_URL + "tiled/" + str(self.instance.pk)

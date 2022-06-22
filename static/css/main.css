@@ -1,8 +1,8 @@
 .image-card {
     margin: 5px;
     width: 200px;
+    height: 320px;
     padding: 10px;
-    height: fit-content;
     border: 1px solid;
     border-radius: 10px;
 }
@@ -14,8 +14,7 @@
     height: auto;
     max-width: 180px;
     max-height: 180px;
-    margin: 0 auto auto auto;
-    align-items: center;
+    margin: auto;
 }
 
 #image_loader {
@@ -49,6 +48,19 @@
 
 .mainArea {
     margin: 20px 0 20px 0;
+}
+
+.image-card-body {
+    -webkit-box-flex: 1;
+    padding: 1.25rem;
+}
+
+.pagination_block{
+    padding: 10px;
+}
+
+.pagination-text{
+    color: green;
 }
 
 /*bootstrap example section*/
