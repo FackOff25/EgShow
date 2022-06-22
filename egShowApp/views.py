@@ -21,12 +21,12 @@ def paginate(objects_list, request, per_page=5):
 
 
 def new_images(request):
-    iterators = paginate(TiledImage.objects.get_last(), request, 5)
+    iterators = paginate(TiledImage.objects.get_last(), request, 15)
     return render(request, "images.html", {'iterators': iterators})
 
 
 def alph_images(request):
-    iterators = paginate(TiledImage.objects.get_in_alph(), request, 5)
+    iterators = paginate(TiledImage.objects.get_in_alph(), request, 15)
     return render(request, "images.html", {'iterators': iterators})
 
 
